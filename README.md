@@ -1,6 +1,12 @@
 # Introdução 
 Este módulo é a base para os módulos OpenSource da comunidade The IT Nerd.
 
+# Instalação
+Instale via composer
+```
+composer require the_it_nerd/module-core
+```
+
 # Funcionalidades
 Este módulo atua como base para os outros módulos provendo as seguintes fruncionalidades:
 - Menu "The IT Nerd" no admin
