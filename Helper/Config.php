@@ -21,7 +21,7 @@ class Config extends AbstractHelper
      */
     public function isEnabled(): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::ADDRESS_SEARCH_API_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->isSetFlag(self::ADDRESS_SEARCH_API_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 
     /**
