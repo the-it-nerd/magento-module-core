@@ -24,6 +24,14 @@ define([
                 region_id: '[name="region_id"]',
                 region: '[name="region"]',
                 country: '[name="country_id"]'
+            },
+            companyAddressFields: {
+                street: '[name="company[street][0]"]',
+                neighborhood: '[name="company[street][3]"]',
+                city: '[name="company[city]"]',
+                region_id: '[name="company[region_id]"]',
+                region: '[name="company[region]"]',
+                country: '[name="company[country_id]"]'
             }
         },
 
@@ -104,19 +112,28 @@ define([
             this.options.parentElement = this.element.closest(this.options.parent);
             this.options.formElement = this.element.closest(this.options.form);
             this.options.formElementWrapper = this.options.formElement.parent();
-            this.options.streetElement = this.options.formElement.find(this.options.addressFields.street);
-            this.options.neighborhoodElement = this.options.formElement.find(this.options.addressFields.neighborhood);
-            this.options.cityElement = this.options.formElement.find(this.options.addressFields.city);
-            this.options.regionIdElement = this.options.formElement.find(this.options.addressFields.region_id);
-            this.options.regionElement = this.options.formElement.find(this.options.addressFields.region);
-            this.options.countryElement = this.options.formElement.find(this.options.addressFields.country);
-
+            this.options.streetElement = this.findElement(this.options.formElement, [this.options.addressFields.street, this.options.companyAddressFields.street]);
+            this.options.neighborhoodElement = this.findElement(this.options.formElement, [this.options.addressFields.neighborhood, this.options.companyAddressFields.neighborhood]);
+            this.options.cityElement = this.findElement(this.options.formElement, [this.options.addressFields.city, this.options.companyAddressFields.city]);
+            this.options.regionIdElement = this.findElement(this.options.formElement, [this.options.addressFields.region_id, this.options.companyAddressFields.region_id]);
+            this.options.regionElement = this.findElement(this.options.formElement, [this.options.addressFields.region, this.options.companyAddressFields.region]);
+            this.options.countryElement = this.findElement(this.options.formElement, [this.options.addressFields.country, this.options.companyAddressFields.country]);
 
             if(!this.options.hasOwnProperty('regionJson')) {
                 this.options.regionJson = window.regionJson;
             }
 
             return this;
+        },
+
+        findElement: function(formElement, fields) {
+            for (let field of fields) {
+                let element = formElement.find(field);
+                if (element.length) {
+                    return element;
+                }
+            }
+            return null;
         },
 
         /**
