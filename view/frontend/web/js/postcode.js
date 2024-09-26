@@ -28,10 +28,14 @@ define([
         },
 
         _create: function() {
-            this.initOptions()
-                .initMask()
-                .createPostcodeSearchLink()
-                .bindEvents();
+            if (!this.options.isAddressSearchEnabled) {
+                this.initMask();
+            } else {
+                this.initOptions()
+                    .initMask()
+                    .createPostcodeSearchLink()
+                    .bindEvents();
+            }
         },
 
 
