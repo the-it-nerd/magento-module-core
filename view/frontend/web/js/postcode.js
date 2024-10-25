@@ -113,7 +113,7 @@ define([
 
 
             if(!this.options.hasOwnProperty('regionJson')) {
-                this.options.regionJson = window.regionJson;
+                this.options.regionJson = this.getRegionJSON();
             }
 
             return this;
@@ -168,6 +168,10 @@ define([
             }, this));
 
             return this;
+        },
+
+        getRegionJSON: function () {
+            return window.checkoutConfig.regionJson
         }
     });
 
